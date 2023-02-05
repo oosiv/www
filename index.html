@@ -3,7 +3,50 @@
   <head>
     <meta charset="utf-8">
     <title>osiv.org</title>
+    <style>
+      html {
+        margin: 0;
+        width: 100%;
+      }
+      body {
+        margin: 0;
+        width: 100%;
+        font-family: Helvetica, Arial, sans-serif;
+        background-color: #1E2226;
+        color: white;
+      }
+      .main {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 8vw;
+      }
+      .alter {
+        animation-fill-mode: both;
+        animation-direction: alternate;
+        animation-duration: 10s;
+        animation-iteration-count: infinite;
+        animation-name: rainbow;
+        animation-timing-function: linear;
+      }
+      @keyframes rainbow {
+        0% { color: hotpink; }
+        10% { color: hotpink; }
+        20% { color: darkorange; }
+        30% { color: darkorange; }
+        40% { color: forestgreen; }
+        50% { color: forestgreen; }
+        60% { color: dodgerblue; /*royalblue*/ }
+        70% { color: dodgerblue; /*royalblue*/ }
+        80% { color: skyblue; }
+        90% { color: skyblue; }
+        100% { color: deeppink; }
+    </style>
   </head>
   <body>
+    <div class="main">
+      os<span class="alter">i</span>v.org
+    </div>
   </body>
 </html>
