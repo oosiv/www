@@ -2,13 +2,12 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Vesta</title>
     <style>
       html {
         margin: 0;
         width: 100%;
-        font-size: 125%;
       }
       body {
         margin: 0;
@@ -17,70 +16,78 @@
         background-color: skyblue;
         color: black;
       }
-      .centered {
+      .text, .button, .container {
         width: fit-content;
-        text-align: center;
         margin: 0 auto;
       }
-      .text {
-        padding: 0.5rem;
-        background-color: white;
+      .text, .button {
+        max-width: 90vw;
         margin: 1rem auto;
+        padding: 0.5rem;
         border-radius: 1rem;
         //border: 0.15rem solid white;
+        background-color: white;
+        text-align: center;
       }
       .text:hover {
         background-color: steelblue;
         color: white;
       }
-      .clickable:hover {
-        background-color: indianred;
-      }
-      #button {
+      #playButton {
         cursor: pointer;
       }
+      .button:hover {
+        background-color: indianred;
+        color: white;
+      }
       #video {
-        max-width: 80vw;
-        max-height: 80vh;
+        max-width: 90vw;
+        max-height: 90vh;
         aspect-ratio: 3 / 2;
         margin: 0;
       }
       a:link, a:visited, a:hover, a:active {
-        text-decoration: none; 
-        color: black; 
+        text-decoration: none;
+        color: inherit; 
       }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
       $(document).ready(function() {
-        $("#button").click(function() { 
+        $("#playButton").click(function() { 
           var video = $("#video")[0];
           if (video.paused) video.play();
           else video.pause();
+        });
+        $("#downloadButton").click(function() { 
+          var video = $("#video")[0];
+          if (!video.paused) video.pause();
         });
       })
     </script>
   </head>
   <body>
-    <h2 class="centered text">Vesta by Martyn Osiv</h1>
-    <p class="centered text">
+    <h2 class="text">Vesta by Martyn Osiv</h1>
+    <p class="text">
       I have written Vesta game just for fun in 2022.
     </p>
-    <p class="centered text">
+    <p class="text">
       It is coded in C++. Graphics and sound is handled via SFML library.
     </p>
-    <p id="button" class="centered text clickable">
+    <p id="playButton" class="button">
       Click here to whatch the gameplay.
     </p>
-    <div class="centered">
+    <div class="container">
       <video id="video" controls="controls" preload="metadata" poster="vesta.png">
         <source src="vesta.mp4" type="video/mp4">
       </video>
     </div>
-    <a href="vesta.mp4" target="_blank"><p class="centered text clickable">
-      Also you can <b>download</b> the video, if you like.
-    </p></a>
-    <p class="centered text">
+    <a href="vesta.mp4" target="_blank">
+      <p id="downloadButton" class="button">
+        Also you can <u>download the video</u> if you like.
+      </p>
+    </a>
+    <p class="text">
       Thanks for watching!
     </p>
   </body>
