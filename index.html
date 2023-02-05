@@ -23,25 +23,28 @@
         font-size: 20vmin;
       }
       .alter {
-        animation-fill-mode: both;
-        animation-direction: alternate;
-        animation-duration: 10s;
-        animation-iteration-count: infinite;
-        animation-name: rainbow;
-        animation-timing-function: linear;
+        animation: 20s both alternate infinite linear rainbow, 5s 1s infinite steps(100, start) blink;
       }
       @keyframes rainbow {
-        0% { color: hotpink; }
-        10% { color: hotpink; }
+        0% { color: #F08784; }
         20% { color: darkorange; }
-        30% { color: darkorange; }
         40% { color: forestgreen; }
-        50% { color: forestgreen; }
         60% { color: dodgerblue; /*royalblue*/ }
-        70% { color: dodgerblue; /*royalblue*/ }
-        80% { color: skyblue; }
-        90% { color: skyblue; }
+        80% { color: deepskyblue; }
         100% { color: deeppink; }
+      }
+      @keyframes blink {
+        0% { opacity: 1; }
+        1% { opacity: 0; }
+        2% { opacity: 1; }
+        3% { opacity: 0; }
+        4% { opacity: 1; }
+        5% { opacity: 0; }
+        6% { opacity: 1; }
+        7% { opacity: 0; }
+        8% { opacity: 1; }
+        100% { opacity: 1; }
+      }
     </style>
   </head>
   <body>
