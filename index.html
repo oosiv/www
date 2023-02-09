@@ -5,51 +5,121 @@
     <title>osiv.org</title>
     <style>
       html {
-        margin: 0;
         width: 100%;
+        margin: 0;
       }
+      
       body {
-        margin: 0;
         width: 100%;
+        margin: 0;
         font-family: Helvetica, Arial, sans-serif;
         background-color: #1E2226;
         color: white;
       }
-      .main {
+      
+      .label {
         position: fixed;
+        color: lightskyblue;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: 20vmin;
+        font-size: 10vmax;
       }
-      .alter {
-        animation: 20s both alternate infinite linear rainbow, 5s 1s infinite steps(100, start) blink;
-      }
-      @keyframes rainbow {
-        0% { color: #F08784; }
-        20% { color: darkorange; }
-        40% { color: forestgreen; }
-        60% { color: dodgerblue; /*royalblue*/ }
-        80% { color: deepskyblue; }
-        100% { color: deeppink; }
-      }
-      @keyframes blink {
-        0% { opacity: 1; }
-        1% { opacity: 0; }
-        2% { opacity: 1; }
-        3% { opacity: 0; }
-        4% { opacity: 1; }
-        5% { opacity: 0; }
-        6% { opacity: 1; }
-        7% { opacity: 0; }
-        8% { opacity: 1; }
+            
+      @keyframes glow {
+        0%   { opacity: 0; }
+        25%  { opacity: 0; }
+        75%  { opacity: 1; }
         100% { opacity: 1; }
       }
+      
+      @keyframes blink {
+        0%   { opacity: 1; }
+        5%   { opacity: 0; }
+        10%  { opacity: 1; }
+        15%  { opacity: 1; }
+        20%  { opacity: 1; }
+        25%  { opacity: 1; }
+        30%  { opacity: 1; }
+        35%  { opacity: 1; }
+        45%  { opacity: 0; }
+        50%  { opacity: 1; }
+        55%  { opacity: 1; }
+        60%  { opacity: 1; }
+        65%  { opacity: 1; }
+        70%  { opacity: 0; }
+        75%  { opacity: 1; }
+        80%  { opacity: 0; }
+        85%  { opacity: 1; }
+        90%  { opacity: 0; }
+        95%  { opacity: 1; }
+        100% { opacity: 0; }
+      }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+      const animationList = [
+        '8s forwards linear glow',
+        '2s forwards steps(20, end) blink',
+      ];
+      
+      const colorList = [
+        '#F08784', // Red paint
+        
+        '#D23637', // Tomato Red (Trading Phrases Colors)
+        '#F16F35', // Light Orange
+        '#F5CA25', // Light Yellow
+        '#529F39', // Yellow Green
+        '#168E50', // Moss Green
+        '#61D0BD', // Mint
+        '#0D62A3', // Blue
+        '#0E96C8', // Light Blue
+        '#37A8D4', // Ice Blue
+        '#62C0D9', // Geyser Blue
+        '#EF89B8', // Soft Pink
+        '#F9BCC4', // Carnation
+        '#796BA6', // Lavendar
+        
+        'orange',
+        'cornflowerblue',
+        'deepskyblue',
+        'darkorange',
+        'greenyellow',
+        'forestgreen',
+        'dodgerblue',
+        'olivedrab',
+        'plum',
+        'royalblue',
+        'salmon',
+        'hotpink',
+        'yellowgreen',
+        'steelblue'
+      ];
+      
+      var animationIndex = 0;
+      
+      var targetClass = '.blink';
+      
+      $(document).ready(() => {
+        $(targetClass).on('animationend', animationEnd)
+                      .css('animation', animationList[0]);
+      });
+      
+      function animationEnd() {
+        animationIndex = (animationIndex + 1) % animationList.length;       
+        if (animationIndex == 0) {
+          let colorIndex = Math.floor(Math.random() * colorList.length);
+          $(targetClass).css('color', colorList[colorIndex]);
+        }
+        $(targetClass).css('animation', 'none');
+        let reflow = document.documentElement.offsetHeight;
+        $(targetClass).css('animation', animationList[animationIndex]);
+      }
+    </script>
   </head>
   <body>
-    <div class="main">
-      osiv<span class="alter">.org</span>
+    <div class="label">
+      osiv<span class="blink">.org</span>
     </div>
   </body>
 </html>
